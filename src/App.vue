@@ -1,61 +1,128 @@
 <template>
   <v-app>
+
+
+
     <v-app-bar
-      app
-      color="primary"
-      dark
+        class="rounded-corners"
+        fixed
+        flat
+        dark
     >
-      <div class="d-flex align-center">
-       <!-- <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />-->
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+           width="48" height="48"
+           viewBox="0 0 172 172"
+           style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-size="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g><path d="M111.08333,53.75h-89.58333v86c0,7.88333 6.45,14.33333 14.33333,14.33333h60.91667c7.88333,0 14.33333,-6.45 14.33333,-14.33333z" fill="#455a64"></path><path d="M96.75,10.75h-60.91667c-7.88333,0 -14.33333,6.45 -14.33333,14.33333v32.25h89.58333v-32.25c0,-7.88333 -6.45,-14.33333 -14.33333,-14.33333z" fill="#263238"></path><path d="M96.75,46.58333h-60.91667c-2.15,0 -3.58333,-1.43333 -3.58333,-3.58333v-17.91667c0,-2.15 1.43333,-3.58333 3.58333,-3.58333h60.91667c2.15,0 3.58333,1.43333 3.58333,3.58333v17.91667c0,2.15 -1.43333,3.58333 -3.58333,3.58333z" fill="#9ccc65"></path><rect x="24" y="9" transform="scale(3.58333,3.58333)" width="2" height="2" fill="#33691e"></rect><rect x="20" y="9" transform="scale(3.58333,3.58333)" width="2" height="2" fill="#33691e"></rect><path d="M46.58333,78.83333h-10.75c-2.15,0 -3.58333,-1.43333 -3.58333,-3.58333v-7.16667c0,-2.15 1.43333,-3.58333 3.58333,-3.58333h10.75c2.15,0 3.58333,1.43333 3.58333,3.58333v7.16667c0,2.15 -1.43333,3.58333 -3.58333,3.58333z" fill="#78909c"></path><path d="M71.66667,78.83333h-10.75c-2.15,0 -3.58333,-1.43333 -3.58333,-3.58333v-7.16667c0,-2.15 1.43333,-3.58333 3.58333,-3.58333h10.75c2.15,0 3.58333,1.43333 3.58333,3.58333v7.16667c0,2.15 -1.43333,3.58333 -3.58333,3.58333z" fill="#78909c"></path><path d="M46.58333,100.33333h-10.75c-2.15,0 -3.58333,-1.43333 -3.58333,-3.58333v-7.16667c0,-2.15 1.43333,-3.58333 3.58333,-3.58333h10.75c2.15,0 3.58333,1.43333 3.58333,3.58333v7.16667c0,2.15 -1.43333,3.58333 -3.58333,3.58333z" fill="#78909c"></path><path d="M71.66667,100.33333h-10.75c-2.15,0 -3.58333,-1.43333 -3.58333,-3.58333v-7.16667c0,-2.15 1.43333,-3.58333 3.58333,-3.58333h10.75c2.15,0 3.58333,1.43333 3.58333,3.58333v7.16667c0,2.15 -1.43333,3.58333 -3.58333,3.58333z" fill="#78909c"></path><path d="M46.58333,121.83333h-10.75c-2.15,0 -3.58333,-1.43333 -3.58333,-3.58333v-7.16667c0,-2.15 1.43333,-3.58333 3.58333,-3.58333h10.75c2.15,0 3.58333,1.43333 3.58333,3.58333v7.16667c0,2.15 -1.43333,3.58333 -3.58333,3.58333z" fill="#78909c"></path><path d="M71.66667,121.83333h-10.75c-2.15,0 -3.58333,-1.43333 -3.58333,-3.58333v-7.16667c0,-2.15 1.43333,-3.58333 3.58333,-3.58333h10.75c2.15,0 3.58333,1.43333 3.58333,3.58333v7.16667c0,2.15 -1.43333,3.58333 -3.58333,3.58333z" fill="#78909c"></path><path d="M46.58333,143.33333h-10.75c-2.15,0 -3.58333,-1.43333 -3.58333,-3.58333v-7.16667c0,-2.15 1.43333,-3.58333 3.58333,-3.58333h10.75c2.15,0 3.58333,1.43333 3.58333,3.58333v7.16667c0,2.15 -1.43333,3.58333 -3.58333,3.58333z" fill="#78909c"></path><path d="M71.66667,143.33333h-10.75c-2.15,0 -3.58333,-1.43333 -3.58333,-3.58333v-7.16667c0,-2.15 1.43333,-3.58333 3.58333,-3.58333h10.75c2.15,0 3.58333,1.43333 3.58333,3.58333v7.16667c0,2.15 -1.43333,3.58333 -3.58333,3.58333z" fill="#78909c"></path><path d="M82.41667,114.66667v-3.58333c0,0 -8.127,5.0955 -11.77483,9.5675c-3.2465,3.65858 -3.65858,8.25242 0,13.1365c0,0 15.35817,34.62933 33.27483,34.62933h25.542c13.41242,0 24.62467,-10.87542 24.62467,-24.27708c0,0 0,-13.65608 0,-29.47292z" fill="#ffcc80"></path><path d="M82.41667,130.978c0,4.79092 4.03842,8.71108 8.95833,8.71108c4.93783,0 8.95833,-3.92017 8.95833,-8.71108v-57.78125c0,-4.78017 -4.0205,-8.69675 -8.95833,-8.69675c-4.91992,0 -8.95833,3.91658 -8.95833,8.69675z" fill="#ffcc80"></path><path d="M100.33333,131.04967c0,4.79092 4.03842,8.7075 8.95833,8.7075c4.93783,0 8.95833,-3.91658 8.95833,-8.7075v-25.72475c0,-4.78017 -4.0205,-8.69675 -8.95833,-8.69675c-4.91992,0 -8.95833,3.91658 -8.95833,8.69675z" fill="#ffcc80"></path><path d="M118.25,130.978c0,4.79092 4.03842,8.71108 8.95833,8.71108c4.93783,0 8.95833,-3.92017 8.95833,-8.71108v-25.53125c0,-4.78017 -4.0205,-8.69675 -8.95833,-8.69675c-4.91992,0 -8.95833,3.91658 -8.95833,8.69675z" fill="#ffcc80"></path><path d="M136.16667,131.04967c0,4.79092 4.03842,8.7075 8.95833,8.7075c4.93783,0 8.95833,-3.91658 8.95833,-8.7075v-22.02317c0,-4.77658 -4.0205,-8.69317 -8.95833,-8.69317c-4.91992,0 -8.95833,3.91658 -8.95833,8.69675z" fill="#ffcc80"></path><path d="M86,73.73783c0.03583,-2.79858 2.45817,-5.04533 5.43233,-5.0095c2.96342,0.02867 5.34633,2.32917 5.31767,5.117c-0.043,2.80575 -10.78225,2.69108 -10.75,-0.1075" fill="#ffebee"></path><path d="M75.16758,116.32575c3.53317,-2.89892 7.24908,-5.24242 7.24908,-5.24242v22.145z" fill="#f2a25a"></path></g></g></svg>
 
-        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-             width="30" height="30"
-             viewBox="0 0 172 172"
-             style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#2ecc71"><path d="M97.73542,17.2c-35.98813,0 -40.02243,40.1964 -42.12656,51.6h-18.73412l-2.38516,11.46667h19.13724c-10.63533,63.20427 -15.1902,67.54583 -20.4362,67.54583c-4.75867,-13.31853 -8.2182,-17.58073 -15.43073,-17.58073c-10.1136,0 -12.17214,8.34119 -12.17214,11.50026c0,7.09787 5.87891,13.06797 17.34557,13.06797c42.44387,0 45.82277,-34.81853 52.47344,-74.53333h19.58515l2.39636,-11.46667h-20.23464c2.12707,-16.48907 4.41628,-40.33543 10.68281,-44.6125c1.03773,2.752 4.85793,17.58073 15.45313,17.58073c11.3864,0 12.34011,-10.61993 12.34011,-11.86979c-0.01147,-3.80693 -2.15627,-12.69844 -17.89427,-12.69844zM122.34844,91.73333c-5.8652,0 -13.31065,3.5544 -16.57292,5.02786l-1.19818,4.98308c0.90587,-0.33253 5.16923,-1.65729 7.0211,-1.65729c6.49013,0 7.58027,2.98761 10.7164,13.59427c0.7396,2.50547 1.75225,6.20033 2.95625,11.11953c-1.3416,1.9092 -5.70377,6.92676 -6.24843,7.36823c-1.41613,-0.516 -5.8429,-2.03802 -9.52943,-2.03802c-8.41653,0 -10.39167,7.30283 -10.39167,10.57083c0,2.91827 2.01571,8.36484 7.98411,8.36484c8.46813,0 10.88734,-6.67441 19.3612,-19.31641c2.236,9.0816 2.7829,19.31641 16.6289,19.31641c5.92253,0 12.97839,-2.87517 16.56172,-4.42317l1.19817,-4.98308c0,0 -3.99989,1.64609 -7.00989,1.64609c-8.7204,0 -8.63037,-6.36436 -13.78464,-25.30729c1.4104,-1.9436 5.14522,-6.79526 6.34922,-7.59219c1.23267,0.43573 5.65996,1.98203 9.50703,1.98203c2.89533,0 10.36927,-1.86459 10.36927,-10.45885c0,-2.96414 -1.76918,-8.19688 -7.98411,-8.19688c-9.83267,0 -14.86985,13.49573 -19.45078,19.37239c-2.494,-12.48147 -5.11413,-19.37239 -16.48333,-19.37239z"></path></g></g></svg>
       &nbsp;
-        Project number
-      </div>
-
-      <v-spacer></v-spacer>
+      &nbsp;
+      <router-link to="/" class="not-for-home">
+      <h3>Metodos numericos</h3>
+      </router-link>
+      <v-spacer/>
 
       <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
+          tile
+          color="transparent"
+          elevation="0"
+          :class="{'text--white':$router.currentRoute.path !== '/about','yellow--text':$router.currentRoute.path === '/about'}"
       >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
+
+        <v-icon
+            left>
+          mdi-chart-timeline-variant-shimmer
+        </v-icon>
+        Euler Mejorado
+      </v-btn>
+
+      <v-divider vertical></v-divider>
+      <v-btn
+          tile
+          color="transparent"
+          elevation="0"
+          :class="{'text--white':$router.currentRoute.path !== '/about','red--text':$router.currentRoute.path === '/about'}"
+      >
+
+        <v-icon left>
+          mdi-chart-bell-curve-cumulative
+        </v-icon>
+        Diferenciacion Numerica
+      </v-btn>
+
+      <v-divider vertical></v-divider>
+      <v-btn
+          tile
+          color="transparent"
+          elevation="0"
+          :class="{'text--white':$router.currentRoute.path !== '/about','green--text':$router.currentRoute.path === '/about'}"
+      >
+
+        <v-icon left>
+          mdi-chart-areaspline
+        </v-icon>
+       Newton-cotes
+      </v-btn>
+
+      <v-divider vertical></v-divider>
+
+      <v-btn
+          icon
+          @click="updatePath('about')"
+      >
+        <v-icon
+            :color="$router.currentRoute.path === '/about' ? 'blue':'white'"
+        >mdi-help</v-icon>
       </v-btn>
     </v-app-bar>
 
 
-
-        <v-main>
-          <HelloWorld/>
-        </v-main>
-
+    <v-main class="mt-15">
+      <router-view/>
+    </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
 
 export default {
-  name: 'App',
-
-  components: {
-    HelloWorld,
+  data() {
+    return {
+    }
   },
+  methods:{
+    updatePath(path){
+      if (`/${path}` !== this.$router.currentRoute.path){
+        this.$router.push(path);
+      }
+    }
+  }
+}
 
-  data: () => ({
-    //
-  }),
-};
 </script>
+
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
+.not-for-home{
+  text-decoration: none;
+  color:white !important;
+}
+</style>
