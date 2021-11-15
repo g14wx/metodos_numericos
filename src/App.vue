@@ -1,6 +1,46 @@
 <template>
   <v-app :style="{background: $vuetify.theme.themes[theme].background}">
 
+    <v-navigation-drawer
+        v-model="drawer"
+        absolute
+        bottom
+        temporary
+        >
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="text-h6">
+           Metódos numericos
+          </v-list-item-title>
+          <v-list-item-subtitle>
+           Ejercicios
+          </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list
+          dense
+          nav
+      >
+        <v-list-item
+            v-for="item in items"
+            :key="item.title"
+            link
+            @click="updatePath(item.path)"
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
 
     <v-app-bar
         class="rounded-corners"
@@ -8,6 +48,8 @@
         flat
         dark
     >
+      <v-app-bar-nav-icon
+          @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
            width="48" height="48"
            viewBox="0 0 172 172"
@@ -23,7 +65,7 @@
       <v-btn
           tile
           color="transparent"
-          class="ml-2 mr-2"
+          class="ml-2 mr-2 d-none d-sm-none d-md-block d-lg-block"
           elevation="0"
           :class="{'text--white':$router.currentRoute.path !== '/euler','yellow--text':$router.currentRoute.path === '/euler'}"
           @click="updatePath('euler')"
@@ -36,11 +78,13 @@
         Euler
       </v-btn>
 
-      <v-divider vertical></v-divider>
+      <v-divider
+          class=" d-none d-sm-none d-md-block d-lg-block"
+          vertical></v-divider>
       <v-btn
           tile
           color="transparent"
-          class="ml-2 mr-2"
+          class="d-none ml-2 mr-2 d-sm-none d-md-block d-lg-block"
           elevation="0"
           :class="{'text--white':$router.currentRoute.path !== '/dnumeric','red--text':$router.currentRoute.path === '/dnumeric'}"
           @click="updatePath('dnumeric')"
@@ -52,11 +96,13 @@
         Diferenciacion Numerica
       </v-btn>
 
-      <v-divider vertical></v-divider>
+      <v-divider
+          class="d-none d-sm-none d-md-block d-lg-block"
+          vertical></v-divider>
       <v-btn
           tile
           color="transparent"
-          class="ml-2 mr-2"
+          class="d-none ml-2 mr-2 d-sm-none d-md-block d-lg-block"
           elevation="0"
           :class="{'text--white':$router.currentRoute.path !== '/newton','green--text':$router.currentRoute.path === '/newton'}"
           @click="updatePath('newton')"
@@ -68,27 +114,30 @@
        Newton-cotes
       </v-btn>
 
-      <v-divider vertical></v-divider>
+      <v-divider
+          class="d-none d-sm-none d-md-block d-lg-block"
+          vertical></v-divider>
 
       <v-btn
           icon
           @click="updatePath('about')"
-          class="ml-2 mr-2"
+          class="d-none ml-2 mr-2 d-sm-none d-md-block d-lg-block"
       >
         <v-icon
             :color="$router.currentRoute.path === '/about' ? 'blue':'white'"
         >mdi-help</v-icon>
       </v-btn>
-      <v-divider vertical></v-divider>
+      <v-divider
+          class="d-none d-sm-none d-md-block d-lg-block"
+          vertical></v-divider>
 
       <v-btn
           icon
           @click="changeTheme"
-          class="ml-2"
+          class=" ml-2 mr-2 d-sm-none d-md-block d-lg-block"
       >
         <v-icon
             v-if="showButtonTheme"
-            v-animate-css="$vuetify.theme.dark ? 'fadeInDown': 'fadeInUp'"
         >{{!$vuetify.theme.dark ? 'mdi-weather-night ' : 'mdi-weather-sunny'}}</v-icon>
       </v-btn>
     </v-app-bar>
@@ -105,7 +154,35 @@
 export default {
   data() {
     return {
-      showButtonTheme:true
+      drawer:false,
+      showButtonTheme:true,
+      items:[
+        {
+          title:"INICIO",
+          icon:"mdi-home",
+          path:"/"
+        },
+        {
+          title:"EULER",
+          icon:"mdi-chart-timeline-variant-shimmer",
+          path:"euler"
+        },
+        {
+          title:"DIFERENCIACIÓN NUMERICA",
+          icon:"mdi-chart-bell-curve-cumulative",
+          path:"dnumeric"
+        },
+        {
+          title:"NEWTON-COTES",
+          icon:"mdi-chart-areaspline",
+          path: "newton"
+        },
+        {
+          title:"ACERCA DE",
+          icon:"mdi-help",
+          path: "about"
+        }
+      ]
     }
   },
   methods:{
