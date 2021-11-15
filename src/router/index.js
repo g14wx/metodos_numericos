@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Euler from "../views/Euler";
+import Dnumeric from "../views/Dnumeric";
+import Newton from "../views/Newton";
 
 Vue.use(VueRouter)
 
@@ -10,6 +13,22 @@ const routes = [
     name: 'Home',
     component: Home
   },
+  {
+    path: '/dnumeric',
+    name: 'Dnumeric',
+    component:Dnumeric
+  },
+  {
+    path: '/euler',
+    name: 'Euler',
+    component:Euler
+  },
+  {
+    path: '/newton',
+    name: 'Newton',
+    component:Newton
+  },
+
   {
     path: '/about',
     name: 'About',

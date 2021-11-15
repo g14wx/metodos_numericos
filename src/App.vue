@@ -1,6 +1,5 @@
 <template>
-  <v-app>
-
+  <v-app :style="{background: $vuetify.theme.themes[theme].background}">
 
 
     <v-app-bar
@@ -24,23 +23,27 @@
       <v-btn
           tile
           color="transparent"
+          class="ml-2 mr-2"
           elevation="0"
-          :class="{'text--white':$router.currentRoute.path !== '/about','yellow--text':$router.currentRoute.path === '/about'}"
+          :class="{'text--white':$router.currentRoute.path !== '/euler','yellow--text':$router.currentRoute.path === '/euler'}"
+          @click="updatePath('euler')"
       >
 
         <v-icon
             left>
           mdi-chart-timeline-variant-shimmer
         </v-icon>
-        Euler Mejorado
+        Euler
       </v-btn>
 
       <v-divider vertical></v-divider>
       <v-btn
           tile
           color="transparent"
+          class="ml-2 mr-2"
           elevation="0"
-          :class="{'text--white':$router.currentRoute.path !== '/about','red--text':$router.currentRoute.path === '/about'}"
+          :class="{'text--white':$router.currentRoute.path !== '/dnumeric','red--text':$router.currentRoute.path === '/dnumeric'}"
+          @click="updatePath('dnumeric')"
       >
 
         <v-icon left>
@@ -53,8 +56,10 @@
       <v-btn
           tile
           color="transparent"
+          class="ml-2 mr-2"
           elevation="0"
-          :class="{'text--white':$router.currentRoute.path !== '/about','green--text':$router.currentRoute.path === '/about'}"
+          :class="{'text--white':$router.currentRoute.path !== '/newton','green--text':$router.currentRoute.path === '/newton'}"
+          @click="updatePath('newton')"
       >
 
         <v-icon left>
@@ -68,10 +73,23 @@
       <v-btn
           icon
           @click="updatePath('about')"
+          class="ml-2 mr-2"
       >
         <v-icon
             :color="$router.currentRoute.path === '/about' ? 'blue':'white'"
         >mdi-help</v-icon>
+      </v-btn>
+      <v-divider vertical></v-divider>
+
+      <v-btn
+          icon
+          @click="changeTheme"
+          class="ml-2"
+      >
+        <v-icon
+            v-if="showButtonTheme"
+            v-animate-css="$vuetify.theme.dark ? 'fadeInDown': 'fadeInUp'"
+        >{{!$vuetify.theme.dark ? 'mdi-weather-night ' : 'mdi-weather-sunny'}}</v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -87,6 +105,7 @@
 export default {
   data() {
     return {
+      showButtonTheme:true
     }
   },
   methods:{
@@ -94,8 +113,19 @@ export default {
       if (`/${path}` !== this.$router.currentRoute.path){
         this.$router.push(path);
       }
+    },
+    changeTheme(){
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+      this.showButtonTheme=false;
+      setTimeout(()=>this.showButtonTheme=true,10);
+    }
+  },
+  computed:{
+    theme(){
+      return (this.$vuetify.theme.dark) ? 'dark' : 'light'
     }
   }
+
 }
 
 </script>
