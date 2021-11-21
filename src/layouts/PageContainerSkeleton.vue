@@ -36,7 +36,7 @@
               </v-row>
               <v-divider v-if="showResultados" class="mt-15 mb-10"></v-divider>
               <v-row v-animate-css="'fadeInDown'" v-if="showResultados">
-                <v-col>
+                <v-col cols="12">
                   <v-card>
                     <v-card-title>Resultados</v-card-title>
                     <v-card-text>
@@ -119,6 +119,11 @@ export default {
   },
   components:{
     TableComponent
+  },
+  mounted() {
+    document.getElementsByClassName("v-main__wrap")[0].classList.add("d-flex");
+    document.getElementsByClassName("v-main__wrap")[0].classList.add("justify-center");
+    document.getElementsByClassName("v-main__wrap")[0].classList.add("allign-center");
   }
 }
 </script>

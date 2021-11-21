@@ -18,7 +18,7 @@ export default {
   name: 'Home',
   components: {},
   mounted() {
-    document.getElementsByClassName("v-main__wrap")[0].classList.add("d-flex");
+    //document.getElementsByClassName("v-main__wrap")[0].classList.add("d-flex");
 // Wrap every letter in a span
     var textWrapper = document.querySelector('.ml9 .letters');
     textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");

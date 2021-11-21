@@ -1,55 +1,14 @@
 <template>
   <v-app :style="{background: $vuetify.theme.themes[theme].background}">
 
-    <v-navigation-drawer
-        v-model="drawer"
-        absolute
-        bottom
-        temporary
-        >
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="text-h6">
-           Metódos numericos
-          </v-list-item-title>
-          <v-list-item-subtitle>
-           Ejercicios
-          </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
-      <v-list
-          dense
-          nav
-      >
-        <v-list-item
-            v-for="item in items"
-            :key="item.title"
-            link
-            @click="updatePath(item.path)"
-        >
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-
-
     <v-app-bar
         class="rounded-corners"
         fixed
         flat
         dark
+        hide-on-scroll
     >
-      <v-app-bar-nav-icon
-          @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+
       <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
            width="48" height="48"
            viewBox="0 0 172 172"
@@ -58,75 +17,11 @@
       &nbsp;
       &nbsp;
       <router-link to="/" class="not-for-home">
-      <h3>Metodos numericos</h3>
+      <h3 class="d-none d-sm-none d-md-block d-lg-block">Metodos numericos</h3>
       </router-link>
       <v-spacer/>
 
-      <v-btn
-          tile
-          color="transparent"
-          class="ml-2 mr-2 d-none d-sm-none d-md-block d-lg-block"
-          elevation="0"
-          :class="{'text--white':$router.currentRoute.path !== '/euler','yellow--text':$router.currentRoute.path === '/euler'}"
-          @click="updatePath('euler')"
-      >
-
-        <v-icon
-            left>
-          mdi-chart-timeline-variant-shimmer
-        </v-icon>
-        Euler
-      </v-btn>
-
-      <v-divider
-          class=" d-none d-sm-none d-md-block d-lg-block"
-          vertical></v-divider>
-      <v-btn
-          tile
-          color="transparent"
-          class="d-none ml-2 mr-2 d-sm-none d-md-block d-lg-block"
-          elevation="0"
-          :class="{'text--white':$router.currentRoute.path !== '/dnumeric','red--text':$router.currentRoute.path === '/dnumeric'}"
-          @click="updatePath('dnumeric')"
-      >
-
-        <v-icon left>
-          mdi-chart-bell-curve-cumulative
-        </v-icon>
-        Diferenciacion Numerica
-      </v-btn>
-
-      <v-divider
-          class="d-none d-sm-none d-md-block d-lg-block"
-          vertical></v-divider>
-      <v-btn
-          tile
-          color="transparent"
-          class="d-none ml-2 mr-2 d-sm-none d-md-block d-lg-block"
-          elevation="0"
-          :class="{'text--white':$router.currentRoute.path !== '/newton','green--text':$router.currentRoute.path === '/newton'}"
-          @click="updatePath('newton')"
-      >
-
-        <v-icon left>
-          mdi-chart-areaspline
-        </v-icon>
-       Newton-cotes
-      </v-btn>
-
-      <v-divider
-          class="d-none d-sm-none d-md-block d-lg-block"
-          vertical></v-divider>
-
-      <v-btn
-          icon
-          @click="updatePath('about')"
-          class="d-none ml-2 mr-2 d-sm-none d-md-block d-lg-block"
-      >
-        <v-icon
-            :color="$router.currentRoute.path === '/about' ? 'blue':'white'"
-        >mdi-help</v-icon>
-      </v-btn>
+      <drop-down-menu-nabar class="d-inline-block" :items="items"></drop-down-menu-nabar>
       <v-divider
           class="d-none d-sm-none d-md-block d-lg-block"
           vertical></v-divider>
@@ -134,7 +29,7 @@
       <v-btn
           icon
           @click="changeTheme"
-          class=" ml-2 mr-2 d-sm-none d-md-block d-lg-block"
+          class=" ml-2 d-sm-none d-md-block d-lg-block"
       >
         <v-icon
             v-if="showButtonTheme"
@@ -151,7 +46,9 @@
 
 <script>
 
+import DropDownMenuNabar from "./components/navbar/DropDownMenuNavbar";
 export default {
+  components: {DropDownMenuNabar},
   data() {
     return {
       drawer:false,
@@ -186,7 +83,13 @@ export default {
     }
   },
   methods:{
+    showNavigationDrawer(){
+      this.drawer = !this.drawer;
+    },
     updatePath(path){
+      if (path === '/' && '/'===this.$router.currentRoute.path){
+        return;
+      }
       if (`/${path}` !== this.$router.currentRoute.path){
         this.$router.push(path);
       }

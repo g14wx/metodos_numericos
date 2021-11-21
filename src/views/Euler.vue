@@ -82,7 +82,7 @@
               <v-icon>mdi-check</v-icon>
               Calcular
             </v-btn>
-            <notifications position="bottom right" group="foo"/>
+            <notifications position="top right" group="foo"/>
           </v-col>
         </v-row>
       </v-container>
@@ -223,11 +223,6 @@ export default {
   components: {
     PageContainerSkeleton,
   },
-  mounted() {
-    document.getElementsByClassName("v-main__wrap")[0].classList.add("d-flex");
-    document.getElementsByClassName("v-main__wrap")[0].classList.add("justify-center");
-    document.getElementsByClassName("v-main__wrap")[0].classList.add("allign-center");
-  }
 }
 </script>
 

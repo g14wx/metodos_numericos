@@ -68,7 +68,7 @@
               <v-icon>mdi-check</v-icon>
               Calcular
             </v-btn>
-            <notifications position="bottom right" group="foo"/>
+            <notifications position="top right" group="foo"/>
           </v-col>
         </v-row>
       </v-container>
