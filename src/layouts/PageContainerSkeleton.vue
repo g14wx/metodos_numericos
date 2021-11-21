@@ -19,7 +19,7 @@
                   <v-card>
                     <v-card-title
                         v-animate-css="animateTextRight"
-                    >Datos
+                    >{{ forPresentation ? '' : 'Datos' }}
                     </v-card-title>
                     <v-card-text>
                       <slot name="form"></slot>
@@ -67,6 +67,11 @@ export default {
     value:{
       required:true,
       type:Boolean
+    },
+    forPresentation:{
+      type:Boolean,
+      required:false,
+      default:false
     },
     title:{
       required:true,
@@ -121,9 +126,6 @@ export default {
     TableComponent
   },
   mounted() {
-    document.getElementsByClassName("v-main__wrap")[0].classList.add("d-flex");
-    document.getElementsByClassName("v-main__wrap")[0].classList.add("justify-center");
-    document.getElementsByClassName("v-main__wrap")[0].classList.add("allign-center");
   }
 }
 </script>

@@ -10,68 +10,70 @@
       <v-img v-else src="/ilustrations/graphs.svg"></v-img>
     </template>
     <template v-slot:form>
-      <v-container v-animate-css="'fadeInRight'">
-        <v-row>
-          <v-col cols="12">
-            <v-text-field
-                label="Función"
-                prepend-inner-icon="mdi-function-variant"
-                v-model="expresion"
-                :rules="rules"
-                :clearable="true"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <v-text-field
-                type="number"
-                label="Limite Inferior"
-                prepend-inner-icon="mdi-arrow-bottom-left-thick "
-                :rules="rules"
-                v-model="xi"
-                :clearable="true"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <v-text-field
-                type="number"
-                label="Limite Superior"
-                prepend-inner-icon="mdi-arrow-top-right-thick "
-                :rules="rules"
-                v-model="xs"
-                :clearable="true"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <v-text-field
-                type="number"
-                label="N de triangulos"
-                prepend-inner-icon="mdi-alpha-h-box-outline "
-                :rules="rules"
-                v-model="ntrapecios"
-                :clearable="true"
-            ></v-text-field>
-          </v-col>
+      <v-form ref="form">
+        <v-container v-animate-css="'fadeInRight'">
+          <v-row>
+            <v-col cols="12">
+              <v-text-field
+                  label="Función"
+                  prepend-inner-icon="mdi-function-variant"
+                  v-model="expresion"
+                  :rules="rules"
+                  :clearable="true"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <v-text-field
+                  type="number"
+                  label="Limite Inferior"
+                  prepend-inner-icon="mdi-arrow-bottom-left-thick "
+                  :rules="rules"
+                  v-model="xi"
+                  :clearable="true"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <v-text-field
+                  type="number"
+                  label="Limite Superior"
+                  prepend-inner-icon="mdi-arrow-top-right-thick "
+                  :rules="rules"
+                  v-model="xs"
+                  :clearable="true"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <v-text-field
+                  type="number"
+                  label="N de triangulos"
+                  prepend-inner-icon="mdi-alpha-h-box-outline "
+                  :rules="rules"
+                  v-model="ntrapecios"
+                  :clearable="true"
+              ></v-text-field>
+            </v-col>
 
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-progress-circular
-                v-if="loadButton"
-                indeterminate
-                color="purple"
-            ></v-progress-circular>
-            <v-btn @click="calcular" v-else color="primary">
-              <v-icon>mdi-check</v-icon>
-              Calcular
-            </v-btn>
-            <notifications position="top right" group="foo"/>
-          </v-col>
-        </v-row>
-      </v-container>
+          </v-row>
+          <v-row>
+            <v-col>
+              <v-progress-circular
+                  v-if="loadButton"
+                  indeterminate
+                  color="purple"
+              ></v-progress-circular>
+              <v-btn @click="calcular" v-else color="primary">
+                <v-icon>mdi-check</v-icon>
+                Calcular
+              </v-btn>
+              <notifications position="top right" group="foo"/>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-form>
     </template>
   </page-container-skeleton>
 </template>
@@ -108,6 +110,15 @@ export default {
   },
   methods:{
     calcular(){
+      if ( !this.$refs.form.validate()){
+        this.$notify({
+          group:"foo",
+          title:"Espera!, algunos datos faltan!",
+          text:"Rellena los campos faltantes!",
+          type:"warning"
+        });
+        return;
+      }
       this.drawGraph();
 
       if (!this.canDeploy){
@@ -195,7 +206,9 @@ export default {
         i += 1;
       } while (i<=n);
       arrfXi.pop();
-      let sumafXi = arrfXi.reduce( (e,t) => (t+=e));
+      let sumafXi=0;
+      if (arrfXi.length>=2)
+        sumafXi = arrfXi.reduce( (e,t) => (t+=e));
 
       let totalIntegral = (Xs - Xi) * ((Xi + (2 * sumafXi) + Xs)/ (2 * n));
 

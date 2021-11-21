@@ -31,7 +31,10 @@
         <v-list-item-icon>
           <v-icon v-text="item.icon"></v-icon>
         </v-list-item-icon>
-        <v-list-item-title class="font-montserrat" style="font-size: 13px !important;">{{ item.title }}</v-list-item-title>
+        <v-list-item-title class="font-montserrat" style="font-size: 13px !important;">
+          {{ item.title }}
+        </v-list-item-title>
+        <v-list-item-action v-if="item.path.match(/http/)"><v-icon>mdi-export-variant</v-icon></v-list-item-action>
       </v-list-item>
     </v-list>
   </v-menu>
@@ -48,11 +51,15 @@ export default {
   name: "drop_down_menu_navbar",
   methods:{
     updatePath(path){
+      if (path.match(/http/)!==null){
+        window.open(path);
+        return;
+      }
       if (path === '/' && '/'===this.$router.currentRoute.path){
         return;
       }
       if (`/${path}` !== this.$router.currentRoute.path){
-        this.$router.push(path);
+        this.$router.replace(path);
       }
     },
   },
@@ -61,7 +68,16 @@ export default {
       if (this.$route.path ==="/"){
         return this.items[0];
       }
-      return this.items.find((item) => `/${item.path}` === this.$route.path);
+      let itemFound= this.items.find((item) => `/${item.path}` === this.$route.path);
+      if (itemFound){
+        return itemFound;
+      }else{
+        this.updatePath("not-found");
+        return{
+          "icon":"mdi-help",
+          "title":"Not Found"
+        }
+      }
     }
   },
 }

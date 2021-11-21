@@ -7,85 +7,87 @@
       v-model="showResultados"
   >
     <template v-slot:ilustration>
-    <v-img src="/ilustrations/pi.svg"></v-img>
+      <v-img src="/ilustrations/pi.svg"></v-img>
     </template>
     <template v-slot:form>
-      <v-container v-animate-css="'fadeInRight'">
-        <v-row>
-          <v-col cols="12">
-            <v-text-field
-                v-animate-css="animationFirstTextInput"
-                label="Derivada"
-                prepend-inner-icon="mdi-function-variant"
-                v-model="derivada"
-                :rules="rules"
-                :clearable="true"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-            <v-text-field
-                type="number"
-                v-animate-css="animationFirstTextInput"
-                label="Limite Inferior"
-                prepend-inner-icon="mdi-arrow-bottom-left-thick "
-                :rules="rules"
-                v-model="linferior"
-                :clearable="true"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-            <v-text-field
-                type="number"
-                v-animate-css="animationFirstTextInput"
-                label="Limite Superior"
-                prepend-inner-icon="mdi-arrow-top-right-thick "
-                :rules="rules"
-                v-model="lsuperior"
-                :clearable="true"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-            <v-text-field
-                type="number"
-                v-animate-css="animationFirstTextInput"
-                label="H"
-                prepend-inner-icon="mdi-alpha-h-box-outline "
-                :rules="rules"
-                v-model="hvalue"
-                :clearable="true"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-            <v-text-field
-                type="number"
-                v-animate-css="animationFirstTextInput"
-                label="Xf"
-                v-model="xfvalue"
-                prepend-inner-icon="mdi-alpha-x-box-outline"
-                :rules="rules"
-                :clearable="true"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-progress-circular
-                v-if="loadButton"
-                indeterminate
-                color="purple"
-            ></v-progress-circular>
-            <v-btn @click="calcular" v-else color="primary">
-              <v-icon>mdi-check</v-icon>
-              Calcular
-            </v-btn>
-            <notifications position="top right" group="foo"/>
-          </v-col>
-        </v-row>
-      </v-container>
+      <v-form ref="form">
+        <v-container v-animate-css="'fadeInRight'">
+          <v-row>
+            <v-col cols="12">
+              <v-text-field
+                  v-animate-css="animationFirstTextInput"
+                  label="Derivada"
+                  prepend-inner-icon="mdi-function-variant"
+                  v-model="derivada"
+                  :rules="rules"
+                  :clearable="true"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+              <v-text-field
+                  type="number"
+                  v-animate-css="animationFirstTextInput"
+                  label="Limite Inferior"
+                  prepend-inner-icon="mdi-arrow-bottom-left-thick "
+                  :rules="rules"
+                  v-model="linferior"
+                  :clearable="true"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+              <v-text-field
+                  type="number"
+                  v-animate-css="animationFirstTextInput"
+                  label="Limite Superior"
+                  prepend-inner-icon="mdi-arrow-top-right-thick "
+                  :rules="rules"
+                  v-model="lsuperior"
+                  :clearable="true"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+              <v-text-field
+                  type="number"
+                  v-animate-css="animationFirstTextInput"
+                  label="H"
+                  prepend-inner-icon="mdi-alpha-h-box-outline "
+                  :rules="rules"
+                  v-model="hvalue"
+                  :clearable="true"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+              <v-text-field
+                  type="number"
+                  v-animate-css="animationFirstTextInput"
+                  label="Xf"
+                  v-model="xfvalue"
+                  prepend-inner-icon="mdi-alpha-x-box-outline"
+                  :rules="rules"
+                  :clearable="true"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <v-progress-circular
+                  v-if="loadButton"
+                  indeterminate
+                  color="purple"
+              ></v-progress-circular>
+              <v-btn @click="calcular" v-else color="primary">
+                <v-icon>mdi-check</v-icon>
+                Calcular
+              </v-btn>
+              <notifications position="top right" group="foo"/>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-form>
     </template>
   </page-container-skeleton>
 
@@ -100,7 +102,7 @@ export default {
   data() {
     return {
       title: "Metodo de Euler",
-      loadButton:false,
+      loadButton: false,
       headers: [
         {
           text: 'iteración',
@@ -140,14 +142,24 @@ export default {
   },
   methods: {
     calcular() {
+
+      if (!this.$refs.form.validate()) {
+        this.$notify({
+          group: "foo",
+          title: "Espera!, algunos datos faltan!",
+          text: "Rellena los campos faltantes!",
+          type: "warning"
+        });
+        return;
+      }
       this.$notify({
         group: 'foo',
         title: 'Analizando',
         text: 'Por favor espere...',
-        type:"info",
-        position:'top left'
+        type: "info",
+        position: 'top left'
       });
-      this.loadButton=true;
+      this.loadButton = true;
       this.showResultados = false;
       this.items = [];
       this.Xn = this.linferior;
@@ -198,11 +210,11 @@ export default {
           group: 'foo',
           title: 'Hecho!',
           text: 'Finalizado!',
-          type:"success",
-          position:'bottom right'
+          type: "success",
+          position: 'bottom right'
         });
         this.showResultados = true;
-        this.loadButton=false;
+        this.loadButton = false;
       }, 1000);
     }
   },

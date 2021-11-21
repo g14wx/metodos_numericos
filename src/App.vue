@@ -75,6 +75,16 @@ export default {
           path: "newton"
         },
         {
+          title: "Cramer",
+          icon:"mdi-counter",
+          path:"https://g14wx.github.io/metodos_numericos_cramer_simple_solution/Cramer.html",
+        },
+        {
+          title: "Newton Raphson",
+          icon:"mdi-counter",
+          path:"https://metodos-numericos-newton-raphson.vercel.app/",
+        },
+        {
           title:"ACERCA DE",
           icon:"mdi-help",
           path: "about"
@@ -104,6 +114,11 @@ export default {
     theme(){
       return (this.$vuetify.theme.dark) ? 'dark' : 'light'
     }
+  },
+  mounted() {
+    document.getElementsByClassName("v-main__wrap")[0].classList.add("d-flex");
+    document.getElementsByClassName("v-main__wrap")[0].classList.add("justify-center");
+    document.getElementsByClassName("v-main__wrap")[0].classList.add("allign-center");
   }
 
 }
