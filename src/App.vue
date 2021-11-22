@@ -105,7 +105,7 @@ export default {
         {
           title:"Video youtube Explicativo",
           icon:"mdi-play-network",
-          path: ""
+          path: "https://youtu.be/9mkL8IBx0Tw"
         },
         {
           title:"ACERCA DE",
