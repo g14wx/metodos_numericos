@@ -1,5 +1,14 @@
 # project_number
 
+**
+
+## Other projects links
+
+**
+
+[cramer github link](https://github.com/g14wx/metodos_numericos_cramer_simple_solution)
+[Newton raphson github link](https://github.com/shift14wx/metodos_numericos_newton_raphson)
+
 ## Project setup
 ```
 npm install

@@ -28,6 +28,19 @@
 
       <v-btn
           icon
+          @click="goToGithub"
+          class=" ml-2 mr-2 d-sm-none d-md-block d-lg-block"
+      >
+        <v-icon
+            v-if="showButtonTheme"
+        >mdi-github</v-icon>
+      </v-btn>
+      <v-divider
+          class="d-none d-sm-none d-md-block d-lg-block"
+          vertical></v-divider>
+
+      <v-btn
+          icon
           @click="changeTheme"
           class=" ml-2 d-sm-none d-md-block d-lg-block"
       >
@@ -90,6 +103,11 @@ export default {
           path: "matriz"
         },
         {
+          title:"Video youtube Explicativo",
+          icon:"mdi-play-network",
+          path: ""
+        },
+        {
           title:"ACERCA DE",
           icon:"mdi-help",
           path: "about"
@@ -113,6 +131,9 @@ export default {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
       this.showButtonTheme=false;
       setTimeout(()=>this.showButtonTheme=true,10);
+    },
+    goToGithub(){
+      window.open("https://github.com/g14wx/metodos_numericos");
     }
   },
   computed:{
