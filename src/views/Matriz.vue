@@ -53,19 +53,19 @@
                 <template v-slot:default>
                   <thead>
                   <tr>
-                    <th v-for="(index) in cols" :key="`colsfor-${index}`" class="text-left">
-                      {{ index }}
+                    <th v-for="(index) in parseInt(cols)" :key="`colsfor-${index}`" class="text-left">
+                      {{ "Columna #: ".index }}
                     </th>
                   </tr>
                   </thead>
                   <tbody>
                   <tr
-                      v-for="(index) in rows"
-                      :key="`$rowsfor-${index}`"
+                      v-for="(index) in parseInt(rows)"
+                      :key="`$rowsforrow-${index}`"
                   >
-                    <td v-for="(index2) in cols" :key="`coltextfor-${index2}`">
+                    <td v-for="(index2) in parseInt(cols)" :key="`coltextfor-${index2}`">
                       <v-text-field
-                          :label="`Campo ${index2}`"
+                          :label="`Campo [${index}][${index2}]`"
                           :rules="rules"
                           v-model="matriz[index-1][index2-1]"
                           :readonly="showResult"
@@ -170,6 +170,8 @@ export default {
       this.notShowTableMatriz = true
     },
     crearTablaParaMatriz() {
+      this.showtableupdate=false;
+      this.showTableMatriz=false;
       if (!this.$refs.form.validate()) {
         this.$notify({
           group: "foo",
@@ -187,9 +189,14 @@ export default {
         }
       }
       console.log(this.matriz);
-      this.showTableMatriz = true;
-      this.notShowTableMatriz = false;
+      setTimeout(()=>{
+
+        this.showTableMatriz = true;
+        this.showtableupdate=true;
+        this.notShowTableMatriz = false;
+      },1000);
     },
+
     calcular() {
       if (!this.$refs.form.validate()) {
         this.$notify({
@@ -210,6 +217,17 @@ export default {
       this.loadButton = true;
       let matrixInverses = matrixInverse(this.matriz);
       console.table(matrixInverses);
+      if (matrixInverses==null){
+        this.showResult = true;
+        this.loadButton = false;
+        this.$notify({
+          group: 'foo',
+          title: 'Error',
+          text: 'Parece que no es una matriz valida, por favor vuelve a intentarlo!',
+          type: "error",
+        });
+        return;
+      }
       setTimeout(() => {
         this.showResult = true;
         this.matriz = matrixInverses;
