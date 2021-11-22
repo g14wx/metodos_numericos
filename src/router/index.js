@@ -5,6 +5,7 @@ import Euler from "../views/Euler";
 import Dnumeric from "../views/Dnumeric";
 import Newton from "../views/Newton";
 import NotFound from "../views/NotFound";
+import Matriz from "../views/Matriz";
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,11 @@ const routes = [
     path: '/newton',
     name: 'Newton',
     component:Newton
+  },
+  {
+    path: '/matriz',
+    name: 'Matriz',
+    component:Matriz
   },
   {
     path: '/about',

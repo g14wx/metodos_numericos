@@ -11,11 +11,11 @@
           <v-card-text>
             <v-container>
               <v-row>
-                <v-col v-animate-css="animateFromDown" cols="12" class="col-sm-12 col-md-6 col-lg-6 col-xl-6 pa-15">
+                <v-col v-if="showIlustration" v-animate-css="animateFromDown" cols="12" class="col-sm-12 col-md-6 col-lg-6 col-xl-6 pa-15">
                   <slot name="ilustration"></slot>
                 </v-col>
                 <v-divider vertical></v-divider>
-                <v-col cols="12" class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <v-col cols="12" :class="{'col-sm-12':showIlustration,'col-md-6':showIlustration,'col-lg-6':showIlustration, 'col-xl-6':showIlustration}">
                   <v-card>
                     <v-card-title
                         v-animate-css="animateTextRight"
@@ -64,6 +64,10 @@ import TableComponent from "../components/TableComponent";
 
 export default {
   props:{
+    showIlustration:{
+      required:false,
+      default:true
+    },
     value:{
       required:true,
       type:Boolean

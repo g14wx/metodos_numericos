@@ -85,6 +85,11 @@ export default {
           path:"https://metodos-numericos-newton-raphson.vercel.app/",
         },
         {
+          title:"Matriz Inversa",
+          icon:"mdi-arrange-send-to-back",
+          path: "matriz"
+        },
+        {
           title:"ACERCA DE",
           icon:"mdi-help",
           path: "about"
