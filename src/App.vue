@@ -73,7 +73,7 @@ export default {
           path:"/"
         },
         {
-          title:"EULER",
+          title:"EULER MEJORADO",
           icon:"mdi-chart-timeline-variant-shimmer",
           path:"euler"
         },

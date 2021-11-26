@@ -101,7 +101,7 @@ export default {
   name: "Euler.vue",
   data() {
     return {
-      title: "Metodo de Euler",
+      title: "Metodo de Euler Mejorado",
       loadButton: false,
       headers: [
         {
